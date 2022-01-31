@@ -9,13 +9,14 @@
 rm(list=ls())
 
 # set working directory
-setwd("C:/Pandemic_2020/revisions/data")
+setwd("D:\\GitHub\\covid19paranoia\\data")
 
 # load libraries
 library(dplyr)
 library(ggplot2)
 library(ggpubr)
 library(devtools)
+library(plotrix) 
 #library(easyGgplot2)
 library(openintro)
 library(plotrix)
@@ -29,16 +30,14 @@ library(ggpattern)
 library(cowplot)
 #library(dplyr)
 library(readr)
-source("C:\\Pandemic_2020\\revisions\\code\\rainCloud\\RainCloudPlots-master\\tutorial_R\\R_rainclouds.R")
-source("C:\\Pandemic_2020\\revisions\\code\\rainCloud\\RainCloudPlots-master\\tutorial_R\\summarySE.R")
-source("C:\\Pandemic_2020\\revisions\\code\\rainCloud\\RainCloudPlots-master\\tutorial_R\\simulateData.R")
-
-
-source("C:/Pandemic_2020/revisions/code/theme_publication.R") # source: https://rpubs.com/Koundy/71792
+source("D:\\GitHub\\covid19paranoia\\RainCloudPlots\\tutorial_R\\R_rainclouds.R") # source: https://github.com/RainCloudPlots/RainCloudPlots/tree/master/tutorial_R
+source("D:\\GitHub\\covid19paranoia\\RainCloudPlots\\tutorial_R\\summarySE.R") # source: https://github.com/RainCloudPlots/RainCloudPlots/tree/master/tutorial_R
+source("D:\\GitHub\\covid19paranoia\\RainCloudPlots\\tutorial_R\\simulateData.R") # source: https://github.com/RainCloudPlots/RainCloudPlots/tree/master/tutorial_R
+source("D:\\GitHub\\covid19paranoia\\code\\theme_publication.R") # source: https://rpubs.com/Koundy/71792
 
 
 # read data
-dat <- read.csv('pandemicPRL.csv')
+dat <- read.csv('D:\\GitHub\\covid19paranoia\\data\\qualtricsPRL\\pandemicPRL.csv')
 
 # subset for pandemic data
 dat_pandemic <- dat %>%
@@ -307,7 +306,7 @@ upper_bound <- sample_mean_difference + margin_error
 print(c(lower_bound,upper_bound))
 
 # Cohen's d
-Cohen_d = sample_mean_difference/sample_se
+Cohen_d = sample_mean_difference / sample_se
 
 
 fig3b_3 <- ggplot(pandemic_lockdown_df, aes(x = state_proactivity_group,
@@ -372,7 +371,7 @@ upper_bound <- sample_mean_difference + margin_error
 print(c(lower_bound,upper_bound))
 
 # Cohen's d
-Cohen_d = sample_mean/sample_se
+Cohen_d = sample_mean_difference/sample_se
 
 # weighted t-test: omega3
 omega3_wtdttest <- wtd.t.test(x=pandemic_lockdown_df$omega3[pandemic_lockdown_df$state_proactivity_group=="less proactive"],

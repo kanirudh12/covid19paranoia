@@ -10,16 +10,16 @@
 rm(list=ls())
 
 # set working directory
-setwd("C:/Pandemic_2020/revisions/data")
+setwd("D:\\GitHub\\covid19paranoia")
 
 # load libraries
 library(dplyr)
 library(ggpubr) # to use ggboxplot()
-source("C:/Pandemic_2020/revisions/code/theme_publication.R") # source: https://rpubs.com/Koundy/71792
+source("D:\\GitHub\\covid19paranoia\\code\\theme_publication.R") # source: https://rpubs.com/Koundy/71792
 library(rstatix) # to use anova_test() and get_anova_table()
 
 # read data
-dat <- read.csv('pandemicPRL.csv')
+dat <- read.csv('D:\\GitHub\\covid19paranoia\\data\\qualtricsPRL\\pandemicPRL.csv')
 
 
 # subset for pre-lockdown data

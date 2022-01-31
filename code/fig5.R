@@ -12,7 +12,7 @@
 rm(list=ls())
 
 # set working directory
-setwd("C:/Pandemic_2020/revisions/data")
+setwd("D:\\GitHub\\covid19paranoia\\data")
 
 
 #install.packages("usmap")
@@ -46,7 +46,7 @@ plot_usmap(data = mask, values = "mwr", color="black", labels = TRUE, label_colo
 rm(list=ls())
 
 # set working directory
-setwd("C:/Pandemic_2020/revisions/data")
+#setwd("C:/Pandemic_2020/revisions/data")
 
 # load libraries
 library(dplyr)
@@ -58,10 +58,10 @@ library(plotrix)
 library(gridExtra)
 library(boot) # library to perform bootstrap
 
-source('C:\\Pandemic_2020\\revisions\\code\\theme_publication.R')
+source('D:\\GitHub\\covid19paranoia\\code\\theme_publication.R')
 
 # read data
-dat <- read.csv('pandemicPRL.csv')
+dat <- read.csv('D:\\GitHub\\covid19paranoia\\data\\qualtricsPRL\\pandemicPRL.csv')
 
 
 # extract pandemic dataset from January to July (i.e., pre-lockdown to post-lockdown)
@@ -155,7 +155,7 @@ fig_4b + theme_Publication() + theme(axis.title.y = element_blank(),
 rm(list=ls())
 
 # set working directory
-setwd("C:/Pandemic_2020/revisions/data")
+setwd("D:\\GitHub\\covid19paranoia\\data")
 
 # load libraries
 library(dplyr)
@@ -179,10 +179,10 @@ library(openintro)
 library(lubridate)
 library(anytime)
 
-source('C:\\Pandemic_2020\\revisions\\code\\theme_publication.R')
+source('D:\\GitHub\\covid19paranoia\\code\\theme_publication.R')
 
 # read data
-dat <- read.csv('data.csv')
+dat <- read.csv('D:\\GitHub\\covid19paranoia\\data\\qualtricsPRL\\pandemicPRL.csv')
 
 
 #### WSR, Mu3 and protesting in required vs recommended states
@@ -236,8 +236,8 @@ t.test(pandemic_postlockdown_df$wsr~ pandemic_postlockdown_df$mwr,
        paired=F)
 
 # Effect size
-install.packages("lsr")
-library(lsr)
+# install.packages("lsr")
+# library(lsr)
 
 cohensD(wsr ~ mwr,
         data = pandemic_postlockdown_df)

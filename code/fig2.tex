@@ -1,0 +1,1601 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\title{fig2.R}
+\author{krani}
+\date{2022-01-30}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={fig2.R},
+  pdfauthor={krani},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Analysis: Investigate differences in belief updating between task versions {-} non{-}social and social}
+\DocumentationTok{\#\#\#}
+\DocumentationTok{\#\#\# Description: Perform three{-}way mixed ANOVA}
+\DocumentationTok{\#\#\#                 two between{-}subjects factor: group, task}
+\DocumentationTok{\#\#\#                 one within{-}subjects factor: block}
+\DocumentationTok{\#\#\# Figure: 1B}
+\DocumentationTok{\#\#\# Written by: Praveen Suthaharan}
+
+\CommentTok{\# clear environment}
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list=}\FunctionTok{ls}\NormalTok{())}
+
+\CommentTok{\# set working directory}
+\FunctionTok{setwd}\NormalTok{(}\StringTok{"D:}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{GitHub}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{covid19paranoia"}\NormalTok{)}
+
+\CommentTok{\# load libraries}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggpubr) }\CommentTok{\# to use ggboxplot()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: ggplot2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"D:}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{GitHub}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{covid19paranoia}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{code}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{theme\_publication.R"}\NormalTok{) }\CommentTok{\# source: https://rpubs.com/Koundy/71792}
+\FunctionTok{library}\NormalTok{(rstatix) }\CommentTok{\# to use anova\_test() and get\_anova\_table()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'rstatix'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:stats':
+## 
+##     filter
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# read data}
+\NormalTok{dat }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{\textquotesingle{}D:}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{GitHub}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{covid19paranoia}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{data}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{qualtricsPRL}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{pandemicPRL.csv\textquotesingle{}}\NormalTok{)}
+
+
+\CommentTok{\# subset for pre{-}lockdown data}
+\NormalTok{dat\_prepandemic }\OtherTok{\textless{}{-}}\NormalTok{ dat }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{((dat}\SpecialCharTok{$}\NormalTok{dataset }\SpecialCharTok{==} \StringTok{"elife2020"} \SpecialCharTok{|}\NormalTok{ dat}\SpecialCharTok{$}\NormalTok{dataset }\SpecialCharTok{==} \StringTok{"pandemic"}\NormalTok{) }\SpecialCharTok{\&}
+\NormalTok{                  dat}\SpecialCharTok{$}\NormalTok{period }\SpecialCharTok{==} \StringTok{"prelockdown"}\NormalTok{)}
+
+
+\CommentTok{\# calculate paranoia group {-} nonsocial/social}
+\CommentTok{\# extract scid from prelockdown, nonsocial task}
+\NormalTok{nonsocial\_group }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(dat\_prepandemic[}\FunctionTok{which}\NormalTok{(dat\_prepandemic}\SpecialCharTok{$}\NormalTok{task\_type }\SpecialCharTok{==} \StringTok{"nonsocial"}\NormalTok{),]}\SpecialCharTok{$}\NormalTok{scid\_group)}
+\FunctionTok{colnames}\NormalTok{(nonsocial\_group) }\OtherTok{\textless{}{-}} \StringTok{"group"}
+
+\CommentTok{\# calculate rgpts from prelockdown, social task}
+\NormalTok{social\_dat }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic[}\FunctionTok{which}\NormalTok{(dat\_prepandemic}\SpecialCharTok{$}\NormalTok{task\_type }\SpecialCharTok{==} \StringTok{"social"}\NormalTok{),]}
+\NormalTok{social\_dat}\SpecialCharTok{$}\NormalTok{paranoia\_group }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{rowSums}\NormalTok{(social\_dat[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"rgpts\_per"}\NormalTok{, }\FunctionTok{names}\NormalTok{(social\_dat))], }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{, }\StringTok{"high"}\NormalTok{,}\StringTok{"low"}\NormalTok{)}
+\NormalTok{social\_group }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(social\_dat}\SpecialCharTok{$}\NormalTok{paranoia\_group)}
+\FunctionTok{colnames}\NormalTok{(social\_group) }\OtherTok{\textless{}{-}} \StringTok{"group"}
+
+\CommentTok{\# combine paranoia grouping into single column}
+\NormalTok{dat\_prepandemic}\SpecialCharTok{$}\NormalTok{paranoia\_group }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(nonsocial\_group, social\_group)}
+
+\CommentTok{\# extract belief{-}updating features}
+\NormalTok{dat\_prepandemic\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{task =}\NormalTok{ dat\_prepandemic}\SpecialCharTok{$}\NormalTok{task\_type,}
+                                 \AttributeTok{group =}\NormalTok{ dat\_prepandemic}\SpecialCharTok{$}\NormalTok{paranoia\_group,}
+\NormalTok{                                 dat\_prepandemic[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"mu03\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic))],}
+\NormalTok{                                 dat\_prepandemic[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"omega3\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic))],}
+\NormalTok{                                 dat\_prepandemic[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"mu02\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic))],}
+\NormalTok{                                 dat\_prepandemic[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"omega2\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic))],}
+\NormalTok{                                 dat\_prepandemic[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"kappa2\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic))])}
+
+
+
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: mu03}
+\NormalTok{dat\_prepandemic\_mu03\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_prepandemic\_df),}
+                                     \AttributeTok{task =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                     \AttributeTok{group =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                     dat\_prepandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"mu03\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_prepandemic\_mu03\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_mu03\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"mu03"}\NormalTok{, mu03\_1, mu03\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\NormalTok{dat\_prepandemic\_mu03\_df}\SpecialCharTok{$}\NormalTok{group }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(dat\_prepandemic\_mu03\_df}\SpecialCharTok{$}\NormalTok{group, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{,}\StringTok{"high"}\NormalTok{))}
+
+\CommentTok{\# Figure 1B\_mu03\_nonsocial}
+\NormalTok{dat\_prepandemic\_mu03\_nonsocial\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_mu03\_df[}\FunctionTok{which}\NormalTok{(dat\_prepandemic\_mu03\_df}\SpecialCharTok{$}\NormalTok{task }\SpecialCharTok{==} \StringTok{"nonsocial"}\NormalTok{),]}
+\NormalTok{dat\_prepandemic\_mu03\_nonsocial\_df}\SpecialCharTok{$}\NormalTok{group }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(dat\_prepandemic\_mu03\_nonsocial\_df}\SpecialCharTok{$}\NormalTok{group, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{,}\StringTok{"high"}\NormalTok{))}
+
+\NormalTok{fig1d\_nonsocial\_mu03 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(dat\_prepandemic\_mu03\_nonsocial\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ group,}
+                                                                      \AttributeTok{y=}\NormalTok{ mu03,}
+                                                                      \AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(block))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{shape=}\DecValTok{16}\NormalTok{,}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{alpha=}\FloatTok{0.4}\NormalTok{,}\AttributeTok{position =} \FunctionTok{position\_jitterdodge}\NormalTok{(), }\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{width=}\FloatTok{0.5}\NormalTok{, }\AttributeTok{lwd=}\FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{name =} \StringTok{""}\NormalTok{, }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"mu03\_1"} \OtherTok{=} \StringTok{"\#708090"}\NormalTok{, }\StringTok{"mu03\_2"} \OtherTok{=} \StringTok{"\#2F4F4F"}\NormalTok{))}
+
+
+\NormalTok{fig1d\_nonsocial\_mu03 }\SpecialCharTok{+} \FunctionTok{theme\_Publication}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                   \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                   \AttributeTok{axis.text =} \FunctionTok{element\_blank}\NormalTok{(), }
+                                                   \AttributeTok{axis.line =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                   \AttributeTok{axis.ticks =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                   \AttributeTok{legend.text =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                   \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `legend.margin` must be specified using `margin()`. For the old
+## behavior use legend.spacing
+\end{verbatim}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Figure 1D\_mu03\_social}
+\NormalTok{dat\_prepandemic\_mu03\_social\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_mu03\_df[}\FunctionTok{which}\NormalTok{(dat\_prepandemic\_mu03\_df}\SpecialCharTok{$}\NormalTok{task }\SpecialCharTok{==} \StringTok{"social"}\NormalTok{),]}
+\NormalTok{dat\_prepandemic\_mu03\_social\_df}\SpecialCharTok{$}\NormalTok{group }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(dat\_prepandemic\_mu03\_social\_df}\SpecialCharTok{$}\NormalTok{group, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{,}\StringTok{"high"}\NormalTok{))}
+
+\NormalTok{fig1d\_social\_mu03 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(dat\_prepandemic\_mu03\_social\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ group,}
+                                                               \AttributeTok{y=}\NormalTok{ mu03,}
+                                                               \AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(block))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{shape=}\DecValTok{16}\NormalTok{,}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{alpha=}\FloatTok{0.4}\NormalTok{,}\AttributeTok{position =} \FunctionTok{position\_jitterdodge}\NormalTok{(), }\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{width=}\FloatTok{0.5}\NormalTok{, }\AttributeTok{lwd=}\FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{name =} \StringTok{""}\NormalTok{, }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"mu03\_1"} \OtherTok{=} \StringTok{"\#708090"}\NormalTok{, }\StringTok{"mu03\_2"} \OtherTok{=} \StringTok{"\#2F4F4F"}\NormalTok{))}
+
+
+\NormalTok{fig1d\_social\_mu03 }\SpecialCharTok{+} \FunctionTok{theme\_Publication}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                \AttributeTok{axis.text =} \FunctionTok{element\_blank}\NormalTok{(), }
+                                                \AttributeTok{axis.line =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                \AttributeTok{axis.ticks =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                \AttributeTok{legend.text =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `legend.margin` must be specified using `margin()`. For the old
+## behavior use legend.spacing
+\end{verbatim}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# mixed anova}
+\NormalTok{prepandemic\_mu03\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_prepandemic\_mu03\_df, }\AttributeTok{dv =}\NormalTok{ mu03, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, group)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(prepandemic\_mu03\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##             Effect DFn DFd          F        p p<.05      ges
+## 1             task   1 198   0.302000 5.83e-01       1.00e-03
+## 2            group   1 198   8.566000 4.00e-03     * 3.50e-02
+## 3            block   1 198 161.845000 1.73e-27     * 1.10e-01
+## 4       task:group   1 198   0.803000 3.71e-01       3.00e-03
+## 5       task:block   1 198   0.059000 8.08e-01       4.55e-05
+## 6      group:block   1 198   0.000826 9.77e-01       6.32e-07
+## 7 task:group:block   1 198   0.012000 9.14e-01       9.04e-06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We observe neither a significant three{-}way interaction nor two{-}way interaction;}
+\CommentTok{\# however, we see a group main effect and block main effect. Therefore, we proceed}
+\CommentTok{\# to conduct simple simple main effects}
+
+\CommentTok{\# simple simple main effect of group}
+\NormalTok{group\_effect }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_mu03\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(task,block) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{anova\_test}\NormalTok{(}\AttributeTok{dv =}\NormalTok{ mu03, }\AttributeTok{wid=}\NormalTok{id, }\AttributeTok{between =}\NormalTok{ group)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Coefficient covariances computed by hccm()
+\end{verbatim}
+
+\begin{verbatim}
+## Coefficient covariances computed by hccm()
+## Coefficient covariances computed by hccm()
+## Coefficient covariances computed by hccm()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# results suggest significant group effect in the nonsocial task}
+
+\CommentTok{\# simple simple main effect of block}
+\NormalTok{block\_effect }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_mu03\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(task,group) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{anova\_test}\NormalTok{(}\AttributeTok{dv =}\NormalTok{ mu03, }\AttributeTok{wid=}\NormalTok{id, }\AttributeTok{within =}\NormalTok{ block)}
+\CommentTok{\# results suggest significant block effect}
+
+\CommentTok{\# Significant simple simple main effects are followed by simple simple comparisons}
+\CommentTok{\# Fit pairwise comparisons: group}
+\NormalTok{pwc\_group }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_mu03\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(task, block) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pairwise\_t\_test}\NormalTok{(mu03 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ group, }\AttributeTok{p.adjust.method =} \StringTok{"BH"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{p, }\SpecialCharTok{{-}}\NormalTok{p.signif)}
+\NormalTok{pwc\_group }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(task }\SpecialCharTok{==} \StringTok{"nonsocial"}\NormalTok{) }\CommentTok{\# focus on the results of nonsocial}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 9
+##   task      block  .y.   group1 group2    n1    n2  p.adj p.adj.signif
+##   <chr>     <fct>  <chr> <chr>  <chr>  <int> <int>  <dbl> <chr>       
+## 1 nonsocial mu03_1 mu03  low    high      56    16 0.0114 *           
+## 2 nonsocial mu03_2 mu03  low    high      56    16 0.0414 *
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwc\_block }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_mu03\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(task, group) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pairwise\_t\_test}\NormalTok{(mu03 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ block, }\AttributeTok{p.adjust.method =} \StringTok{"BH"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{p, }\SpecialCharTok{{-}}\NormalTok{p.signif)}
+\NormalTok{pwc\_block}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 9
+##   task      group .y.   group1 group2    n1    n2    p.adj p.adj.signif
+##   <chr>     <fct> <chr> <chr>  <chr>  <int> <int>    <dbl> <chr>       
+## 1 nonsocial low   mu03  mu03_1 mu03_2    56    56 4.68e- 6 ****        
+## 2 nonsocial high  mu03  mu03_1 mu03_2    16    16 7.18e- 3 **          
+## 3 social    low   mu03  mu03_1 mu03_2   110   110 9.44e-11 ****        
+## 4 social    high  mu03  mu03_1 mu03_2    20    20 6.08e- 3 **
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: omega3}
+\NormalTok{dat\_prepandemic\_omega3\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_prepandemic\_df),}
+                                      \AttributeTok{task =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                      \AttributeTok{group =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                      dat\_prepandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"omega3\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_prepandemic\_omega3\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_omega3\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"omega3"}\NormalTok{, omega3\_1, omega3\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# Figure 1D\_omega3\_nonsocial}
+\NormalTok{dat\_prepandemic\_omega3\_nonsocial\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_omega3\_df[}\FunctionTok{which}\NormalTok{(dat\_prepandemic\_omega3\_df}\SpecialCharTok{$}\NormalTok{task }\SpecialCharTok{==} \StringTok{"nonsocial"}\NormalTok{),]}
+\NormalTok{dat\_prepandemic\_omega3\_nonsocial\_df}\SpecialCharTok{$}\NormalTok{group }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(dat\_prepandemic\_omega3\_nonsocial\_df}\SpecialCharTok{$}\NormalTok{group, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{,}\StringTok{"high"}\NormalTok{))}
+
+\NormalTok{fig1d\_nonsocial\_omega3 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(dat\_prepandemic\_omega3\_nonsocial\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ group,}
+                                                                          \AttributeTok{y=}\NormalTok{ omega3,}
+                                                                          \AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(block))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{shape=}\DecValTok{16}\NormalTok{,}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{alpha=}\FloatTok{0.4}\NormalTok{,}\AttributeTok{position =} \FunctionTok{position\_jitterdodge}\NormalTok{(), }\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{width=}\FloatTok{0.5}\NormalTok{, }\AttributeTok{lwd=}\FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{name =} \StringTok{""}\NormalTok{, }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"omega3\_1"} \OtherTok{=} \StringTok{"\#708090"}\NormalTok{, }\StringTok{"omega3\_2"} \OtherTok{=} \StringTok{"\#2F4F4F"}\NormalTok{))}
+
+
+\NormalTok{fig1d\_nonsocial\_omega3 }\SpecialCharTok{+} \FunctionTok{theme\_Publication}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                     \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                     \AttributeTok{axis.text =} \FunctionTok{element\_blank}\NormalTok{(), }
+                                                     \AttributeTok{axis.line =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                     \AttributeTok{axis.ticks =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                     \AttributeTok{legend.text =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                     \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `legend.margin` must be specified using `margin()`. For the old
+## behavior use legend.spacing
+\end{verbatim}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Figure 1D\_omega3\_social}
+\NormalTok{dat\_prepandemic\_omega3\_social\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_omega3\_df[}\FunctionTok{which}\NormalTok{(dat\_prepandemic\_omega3\_df}\SpecialCharTok{$}\NormalTok{task }\SpecialCharTok{==} \StringTok{"social"}\NormalTok{),]}
+\NormalTok{dat\_prepandemic\_omega3\_social\_df}\SpecialCharTok{$}\NormalTok{group }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(dat\_prepandemic\_omega3\_social\_df}\SpecialCharTok{$}\NormalTok{group, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{,}\StringTok{"high"}\NormalTok{))}
+
+\NormalTok{fig1d\_social\_omega3 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(dat\_prepandemic\_omega3\_social\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ group,}
+                                                                    \AttributeTok{y=}\NormalTok{ omega3,}
+                                                                    \AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(block))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{shape=}\DecValTok{16}\NormalTok{,}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{alpha=}\FloatTok{0.4}\NormalTok{,}\AttributeTok{position =} \FunctionTok{position\_jitterdodge}\NormalTok{(), }\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{width=}\FloatTok{0.5}\NormalTok{, }\AttributeTok{lwd=}\FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{name =} \StringTok{""}\NormalTok{, }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"omega3\_1"} \OtherTok{=} \StringTok{"\#708090"}\NormalTok{, }\StringTok{"omega3\_2"} \OtherTok{=} \StringTok{"\#2F4F4F"}\NormalTok{))}
+
+
+\NormalTok{fig1d\_social\_omega3 }\SpecialCharTok{+} \FunctionTok{theme\_Publication}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                  \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                  \AttributeTok{axis.text =} \FunctionTok{element\_blank}\NormalTok{(), }
+                                                  \AttributeTok{axis.line =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                  \AttributeTok{axis.ticks =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                  \AttributeTok{legend.text =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                  \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `legend.margin` must be specified using `margin()`. For the old
+## behavior use legend.spacing
+\end{verbatim}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{prepandemic\_omega3\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_prepandemic\_omega3\_df, }\AttributeTok{dv =}\NormalTok{ omega3, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, group)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(prepandemic\_omega3\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##             Effect DFn DFd      F        p p<.05      ges
+## 1             task   1 198  0.343 5.59e-01       1.00e-03
+## 2            group   1 198  4.447 3.60e-02     * 1.40e-02
+## 3            block   1 198 38.893 2.66e-09     * 6.40e-02
+## 4       task:group   1 198  0.299 5.85e-01       9.83e-04
+## 5       task:block   1 198  0.003 9.59e-01       4.72e-06
+## 6      group:block   1 198  0.969 3.26e-01       2.00e-03
+## 7 task:group:block   1 198  0.899 3.44e-01       2.00e-03
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: mu02}
+\NormalTok{dat\_prepandemic\_mu02\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_prepandemic\_df),}
+                                      \AttributeTok{task =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                      \AttributeTok{group =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                      dat\_prepandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"mu02\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_prepandemic\_mu02\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_mu02\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"mu02"}\NormalTok{, mu02\_1, mu02\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# Figure 1D\_mu02\_nonsocial}
+\NormalTok{dat\_prepandemic\_mu02\_nonsocial\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_mu02\_df[}\FunctionTok{which}\NormalTok{(dat\_prepandemic\_mu02\_df}\SpecialCharTok{$}\NormalTok{task }\SpecialCharTok{==} \StringTok{"nonsocial"}\NormalTok{),]}
+\NormalTok{dat\_prepandemic\_mu02\_nonsocial\_df}\SpecialCharTok{$}\NormalTok{group }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(dat\_prepandemic\_mu02\_nonsocial\_df}\SpecialCharTok{$}\NormalTok{group, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{,}\StringTok{"high"}\NormalTok{))}
+
+\NormalTok{fig1d\_nonsocial\_mu02 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(dat\_prepandemic\_mu02\_nonsocial\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ group,}
+                                                                      \AttributeTok{y=}\NormalTok{ mu02,}
+                                                                      \AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(block))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{shape=}\DecValTok{16}\NormalTok{,}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{alpha=}\FloatTok{0.4}\NormalTok{,}\AttributeTok{position =} \FunctionTok{position\_jitterdodge}\NormalTok{(), }\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{width=}\FloatTok{0.5}\NormalTok{, }\AttributeTok{lwd=}\FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{name =} \StringTok{""}\NormalTok{, }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"mu02\_1"} \OtherTok{=} \StringTok{"\#708090"}\NormalTok{, }\StringTok{"mu02\_2"} \OtherTok{=} \StringTok{"\#2F4F4F"}\NormalTok{))}
+
+
+\NormalTok{fig1d\_nonsocial\_mu02 }\SpecialCharTok{+} \FunctionTok{theme\_Publication}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                   \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                   \AttributeTok{axis.text =} \FunctionTok{element\_blank}\NormalTok{(), }
+                                                   \AttributeTok{axis.line =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                   \AttributeTok{axis.ticks =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                   \AttributeTok{legend.text =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                   \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `legend.margin` must be specified using `margin()`. For the old
+## behavior use legend.spacing
+\end{verbatim}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Figure 1D\_mu02\_social}
+\NormalTok{dat\_prepandemic\_mu02\_social\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_mu02\_df[}\FunctionTok{which}\NormalTok{(dat\_prepandemic\_mu02\_df}\SpecialCharTok{$}\NormalTok{task }\SpecialCharTok{==} \StringTok{"social"}\NormalTok{),]}
+\NormalTok{dat\_prepandemic\_mu02\_social\_df}\SpecialCharTok{$}\NormalTok{group }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(dat\_prepandemic\_mu02\_social\_df}\SpecialCharTok{$}\NormalTok{group, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{,}\StringTok{"high"}\NormalTok{))}
+
+\NormalTok{fig1d\_social\_mu02 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(dat\_prepandemic\_mu02\_social\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ group,}
+                                                                \AttributeTok{y=}\NormalTok{ mu02,}
+                                                                \AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(block))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{shape=}\DecValTok{16}\NormalTok{,}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{alpha=}\FloatTok{0.4}\NormalTok{,}\AttributeTok{position =} \FunctionTok{position\_jitterdodge}\NormalTok{(), }\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{width=}\FloatTok{0.5}\NormalTok{, }\AttributeTok{lwd=}\FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{name =} \StringTok{""}\NormalTok{, }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"mu02\_1"} \OtherTok{=} \StringTok{"\#708090"}\NormalTok{, }\StringTok{"mu02\_2"} \OtherTok{=} \StringTok{"\#2F4F4F"}\NormalTok{))}
+
+
+\NormalTok{fig1d\_social\_mu02 }\SpecialCharTok{+} \FunctionTok{theme\_Publication}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                \AttributeTok{axis.text =} \FunctionTok{element\_blank}\NormalTok{(), }
+                                                \AttributeTok{axis.line =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                \AttributeTok{axis.ticks =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                \AttributeTok{legend.text =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `legend.margin` must be specified using `margin()`. For the old
+## behavior use legend.spacing
+\end{verbatim}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{prepandemic\_mu02\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_prepandemic\_mu02\_df, }\AttributeTok{dv =}\NormalTok{ mu02, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, group)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(prepandemic\_mu02\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##             Effect DFn DFd          F        p p<.05      ges
+## 1             task   1 198  0.3460000 5.57e-01       1.00e-03
+## 2            group   1 198  0.4820000 4.88e-01       2.00e-03
+## 3            block   1 198 36.5830000 7.18e-09     * 4.20e-02
+## 4       task:group   1 198  0.1820000 6.70e-01       7.00e-04
+## 5       task:block   1 198  0.2250000 6.35e-01       2.71e-04
+## 6      group:block   1 198  0.5070000 4.77e-01       6.09e-04
+## 7 task:group:block   1 198  0.0000585 9.94e-01       7.04e-08
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: omega2}
+\NormalTok{dat\_prepandemic\_omega2\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_prepandemic\_df),}
+                                        \AttributeTok{task =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                        \AttributeTok{group =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                        dat\_prepandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"omega2\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_prepandemic\_omega2\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_omega2\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"omega2"}\NormalTok{, omega2\_1, omega2\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# Figure 1D\_omega2\_nonsocial}
+\NormalTok{dat\_prepandemic\_omega2\_nonsocial\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_omega2\_df[}\FunctionTok{which}\NormalTok{(dat\_prepandemic\_omega2\_df}\SpecialCharTok{$}\NormalTok{task }\SpecialCharTok{==} \StringTok{"nonsocial"}\NormalTok{),]}
+\NormalTok{dat\_prepandemic\_omega2\_nonsocial\_df}\SpecialCharTok{$}\NormalTok{group }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(dat\_prepandemic\_omega2\_nonsocial\_df}\SpecialCharTok{$}\NormalTok{group, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{,}\StringTok{"high"}\NormalTok{))}
+
+\NormalTok{fig1d\_nonsocial\_omega2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(dat\_prepandemic\_omega2\_nonsocial\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ group,}
+                                                                          \AttributeTok{y=}\NormalTok{ omega2,}
+                                                                          \AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(block))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{shape=}\DecValTok{16}\NormalTok{,}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{alpha=}\FloatTok{0.4}\NormalTok{,}\AttributeTok{position =} \FunctionTok{position\_jitterdodge}\NormalTok{(), }\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{width=}\FloatTok{0.5}\NormalTok{, }\AttributeTok{lwd=}\FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{name =} \StringTok{""}\NormalTok{, }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"omega2\_1"} \OtherTok{=} \StringTok{"\#708090"}\NormalTok{, }\StringTok{"omega2\_2"} \OtherTok{=} \StringTok{"\#2F4F4F"}\NormalTok{))}
+
+
+\NormalTok{fig1d\_nonsocial\_omega2 }\SpecialCharTok{+} \FunctionTok{theme\_Publication}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                     \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                     \AttributeTok{axis.text =} \FunctionTok{element\_blank}\NormalTok{(), }
+                                                     \AttributeTok{axis.line =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                     \AttributeTok{axis.ticks =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                     \AttributeTok{legend.text =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                     \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `legend.margin` must be specified using `margin()`. For the old
+## behavior use legend.spacing
+\end{verbatim}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-7.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Figure 1D\_omega2\_social}
+\NormalTok{dat\_prepandemic\_omega2\_social\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_omega2\_df[}\FunctionTok{which}\NormalTok{(dat\_prepandemic\_omega2\_df}\SpecialCharTok{$}\NormalTok{task }\SpecialCharTok{==} \StringTok{"social"}\NormalTok{),]}
+\NormalTok{dat\_prepandemic\_omega2\_social\_df}\SpecialCharTok{$}\NormalTok{group }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(dat\_prepandemic\_omega2\_social\_df}\SpecialCharTok{$}\NormalTok{group, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{,}\StringTok{"high"}\NormalTok{))}
+
+\NormalTok{fig1d\_social\_omega2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(dat\_prepandemic\_omega2\_social\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ group,}
+                                                                    \AttributeTok{y=}\NormalTok{ omega2,}
+                                                                    \AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(block))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{shape=}\DecValTok{16}\NormalTok{,}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{alpha=}\FloatTok{0.4}\NormalTok{,}\AttributeTok{position =} \FunctionTok{position\_jitterdodge}\NormalTok{(), }\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{width=}\FloatTok{0.5}\NormalTok{, }\AttributeTok{lwd=}\FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{name =} \StringTok{""}\NormalTok{, }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"omega2\_1"} \OtherTok{=} \StringTok{"\#708090"}\NormalTok{, }\StringTok{"omega2\_2"} \OtherTok{=} \StringTok{"\#2F4F4F"}\NormalTok{))}
+
+
+\NormalTok{fig1d\_social\_omega2 }\SpecialCharTok{+} \FunctionTok{theme\_Publication}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                  \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                  \AttributeTok{axis.text =} \FunctionTok{element\_blank}\NormalTok{(), }
+                                                  \AttributeTok{axis.line =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                  \AttributeTok{axis.ticks =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                  \AttributeTok{legend.text =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                  \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `legend.margin` must be specified using `margin()`. For the old
+## behavior use legend.spacing
+\end{verbatim}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-8.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{prepandemic\_omega2\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_prepandemic\_omega2\_df, }\AttributeTok{dv =}\NormalTok{ omega2, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, group)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(prepandemic\_omega2\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##             Effect DFn DFd      F        p p<.05      ges
+## 1             task   1 198  0.019 0.891000       8.22e-05
+## 2            group   1 198 12.986 0.000397     * 5.30e-02
+## 3            block   1 198  0.176 0.675000       1.23e-04
+## 4       task:group   1 198  0.314 0.576000       1.00e-03
+## 5       task:block   1 198  0.424 0.516000       2.96e-04
+## 6      group:block   1 198  2.060 0.153000       1.00e-03
+## 7 task:group:block   1 198  1.082 0.300000       7.55e-04
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: kappa}
+\NormalTok{dat\_prepandemic\_kappa\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_prepandemic\_df),}
+                                        \AttributeTok{task =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                        \AttributeTok{group =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                        dat\_prepandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"kappa2\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_prepandemic\_kappa\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_kappa\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"kappa"}\NormalTok{, kappa2\_1, kappa2\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# Figure 1D\_kappa\_nonsocial}
+\NormalTok{dat\_prepandemic\_kappa\_nonsocial\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_kappa\_df[}\FunctionTok{which}\NormalTok{(dat\_prepandemic\_kappa\_df}\SpecialCharTok{$}\NormalTok{task }\SpecialCharTok{==} \StringTok{"nonsocial"}\NormalTok{),]}
+\NormalTok{dat\_prepandemic\_kappa\_nonsocial\_df}\SpecialCharTok{$}\NormalTok{group }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(dat\_prepandemic\_kappa\_nonsocial\_df}\SpecialCharTok{$}\NormalTok{group, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{,}\StringTok{"high"}\NormalTok{))}
+
+\NormalTok{fig1d\_nonsocial\_kappa }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(dat\_prepandemic\_kappa\_nonsocial\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ group,}
+                                                                        \AttributeTok{y=}\NormalTok{ kappa,}
+                                                                        \AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(block))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{shape=}\DecValTok{16}\NormalTok{,}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{alpha=}\FloatTok{0.4}\NormalTok{,}\AttributeTok{position =} \FunctionTok{position\_jitterdodge}\NormalTok{(), }\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{width=}\FloatTok{0.5}\NormalTok{, }\AttributeTok{lwd=}\FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{name =} \StringTok{""}\NormalTok{, }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"kappa2\_1"} \OtherTok{=} \StringTok{"\#708090"}\NormalTok{, }\StringTok{"kappa2\_2"} \OtherTok{=} \StringTok{"\#2F4F4F"}\NormalTok{))}
+
+
+\NormalTok{fig1d\_nonsocial\_kappa }\SpecialCharTok{+} \FunctionTok{theme\_Publication}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                    \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                    \AttributeTok{axis.text =} \FunctionTok{element\_blank}\NormalTok{(), }
+                                                    \AttributeTok{axis.line =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                    \AttributeTok{axis.ticks =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                    \AttributeTok{legend.text =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                    \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `legend.margin` must be specified using `margin()`. For the old
+## behavior use legend.spacing
+\end{verbatim}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-9.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Figure 1D\_kappa\_social}
+\NormalTok{dat\_prepandemic\_kappa\_social\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_kappa\_df[}\FunctionTok{which}\NormalTok{(dat\_prepandemic\_kappa\_df}\SpecialCharTok{$}\NormalTok{task }\SpecialCharTok{==} \StringTok{"social"}\NormalTok{),]}
+\NormalTok{dat\_prepandemic\_kappa\_social\_df}\SpecialCharTok{$}\NormalTok{group }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(dat\_prepandemic\_kappa\_social\_df}\SpecialCharTok{$}\NormalTok{group, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{,}\StringTok{"high"}\NormalTok{))}
+
+\NormalTok{fig1d\_social\_kappa }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(dat\_prepandemic\_kappa\_social\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ group,}
+                                                                  \AttributeTok{y=}\NormalTok{ kappa,}
+                                                                  \AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(block))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{shape=}\DecValTok{16}\NormalTok{,}\AttributeTok{color=}\StringTok{"black"}\NormalTok{,}\AttributeTok{alpha=}\FloatTok{0.4}\NormalTok{,}\AttributeTok{position =} \FunctionTok{position\_jitterdodge}\NormalTok{(), }\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{width=}\FloatTok{0.5}\NormalTok{, }\AttributeTok{lwd=}\FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{name =} \StringTok{""}\NormalTok{, }
+                    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"kappa2\_1"} \OtherTok{=} \StringTok{"\#708090"}\NormalTok{, }\StringTok{"kappa2\_2"} \OtherTok{=} \StringTok{"\#2F4F4F"}\NormalTok{))}
+
+
+\NormalTok{fig1d\_social\_kappa }\SpecialCharTok{+} \FunctionTok{theme\_Publication}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                  \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                  \AttributeTok{axis.text =} \FunctionTok{element\_blank}\NormalTok{(), }
+                                                  \AttributeTok{axis.line =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                  \AttributeTok{axis.ticks =} \FunctionTok{element\_line}\NormalTok{(}\AttributeTok{colour=}\StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{),}
+                                                  \AttributeTok{legend.text =} \FunctionTok{element\_blank}\NormalTok{(),}
+                                                  \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `legend.margin` must be specified using `margin()`. For the old
+## behavior use legend.spacing
+\end{verbatim}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-10.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{prepandemic\_kappa\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_prepandemic\_kappa\_df, }\AttributeTok{dv =}\NormalTok{ kappa, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, group)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(prepandemic\_kappa\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##             Effect DFn DFd         F        p p<.05      ges
+## 1             task   1 198  0.107000 7.44e-01       4.27e-04
+## 2            group   1 198 21.450000 6.57e-06     * 7.90e-02
+## 3            block   1 198 30.281000 1.15e-07     * 3.10e-02
+## 4       task:group   1 198  1.031000 3.11e-01       4.00e-03
+## 5       task:block   1 198  0.000216 9.88e-01       2.25e-07
+## 6      group:block   1 198  0.617000 4.33e-01       6.42e-04
+## 7 task:group:block   1 198  0.724000 3.96e-01       7.54e-04
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+
+\CommentTok{\# subset for replication data}
+\NormalTok{dat\_replication }\OtherTok{\textless{}{-}}\NormalTok{ dat }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{dataset }\SpecialCharTok{==} \StringTok{"replication"}\NormalTok{)}
+
+\CommentTok{\# calculate paranoia score}
+\NormalTok{dat\_replication}\SpecialCharTok{$}\NormalTok{paranoia\_score }\OtherTok{\textless{}{-}} \FunctionTok{rowMeans}\NormalTok{(dat\_replication[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"rgpts\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_replication))], }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\CommentTok{\# calculate paranoia group}
+\NormalTok{dat\_replication}\SpecialCharTok{$}\NormalTok{paranoia\_group }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{rowSums}\NormalTok{(dat\_replication[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"rgpts\_per"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_replication))], }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{, }\StringTok{"high"}\NormalTok{,}\StringTok{"low"}\NormalTok{)}
+
+
+\CommentTok{\# extract relevant features}
+\NormalTok{dat\_replication\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{task =}\NormalTok{ dat\_replication}\SpecialCharTok{$}\NormalTok{task\_type,}
+                                 \AttributeTok{group =}\NormalTok{ dat\_replication}\SpecialCharTok{$}\NormalTok{paranoia\_group,}
+\NormalTok{                                 dat\_replication[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"wsr\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_replication))],}
+\NormalTok{                                 dat\_replication[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"lsr\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_replication))],}
+\NormalTok{                                 dat\_replication[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"mu03\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_replication))],}
+\NormalTok{                                 dat\_replication[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"omega3\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_replication))],}
+\NormalTok{                                 dat\_replication[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"mu02\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_replication))],}
+\NormalTok{                                 dat\_replication[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"omega2\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_replication))],}
+\NormalTok{                                 dat\_replication[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"kappa2\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_replication))])}
+
+
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: WSR}
+\NormalTok{dat\_replication\_wsr\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_replication\_df),}
+                                     \AttributeTok{task =}\NormalTok{ dat\_replication\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                     \AttributeTok{group =}\NormalTok{ dat\_replication\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                     dat\_replication\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"wsr\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_replication\_df))]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_replication\_wsr\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_replication\_wsr\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"wsr"}\NormalTok{, wsr\_block1, wsr\_block2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_replication\_wsr }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_replication\_wsr\_df, }\AttributeTok{x =} \StringTok{"group"}\NormalTok{, }\AttributeTok{y =} \StringTok{"wsr"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_replication\_wsr}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-11.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{replication\_wsr\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_replication\_wsr\_df, }\AttributeTok{dv =}\NormalTok{ wsr, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, group)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(replication\_wsr\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##             Effect DFn DFd      F        p p<.05      ges
+## 1             task   1 401  6.335 1.20e-02     * 1.30e-02
+## 2            group   1 401 87.072 7.23e-19     * 1.56e-01
+## 3            block   1 401  7.223 7.00e-03     * 3.00e-03
+## 4       task:group   1 401  5.671 1.80e-02     * 1.20e-02
+## 5       task:block   1 401  0.047 8.29e-01       1.75e-05
+## 6      group:block   1 401  4.592 3.30e-02     * 2.00e-03
+## 7 task:group:block   1 401  0.290 5.91e-01       1.09e-04
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: LSR}
+\NormalTok{dat\_replication\_lsr\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_replication\_df),}
+                                     \AttributeTok{task =}\NormalTok{ dat\_replication\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                     \AttributeTok{group =}\NormalTok{ dat\_replication\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                     dat\_replication\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"lsr\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_replication\_df))]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_replication\_lsr\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_replication\_lsr\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"lsr"}\NormalTok{, lsr\_block1, lsr\_block2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_replication\_lsr }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_replication\_lsr\_df, }\AttributeTok{x =} \StringTok{"group"}\NormalTok{, }\AttributeTok{y =} \StringTok{"lsr"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_replication\_lsr}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-12.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{replication\_lsr\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_replication\_lsr\_df, }\AttributeTok{dv =}\NormalTok{ lsr, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, group)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(replication\_lsr\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##             Effect DFn DFd      F        p p<.05      ges
+## 1             task   1 401  0.258 0.612000       5.61e-04
+## 2            group   1 401 14.836 0.000136     * 3.10e-02
+## 3            block   1 401  1.994 0.159000       6.31e-04
+## 4       task:group   1 401  5.560 0.019000     * 1.20e-02
+## 5       task:block   1 401  0.063 0.801000       2.01e-05
+## 6      group:block   1 401  1.470 0.226000       4.65e-04
+## 7 task:group:block   1 401  0.090 0.765000       2.84e-05
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: mu03}
+\NormalTok{dat\_prepandemic\_mu03\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_prepandemic\_df),}
+                                      \AttributeTok{task =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                      \AttributeTok{group =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                      dat\_prepandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"mu03\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_prepandemic\_mu03\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_mu03\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"mu03"}\NormalTok{, mu03\_1, mu03\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_prepandemic\_mu03 }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_prepandemic\_mu03\_df, }\AttributeTok{x =} \StringTok{"group"}\NormalTok{, }\AttributeTok{y =} \StringTok{"mu03"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_prepandemic\_mu03}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-13.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{prepandemic\_mu03\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_prepandemic\_mu03\_df, }\AttributeTok{dv =}\NormalTok{ mu03, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, group)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(prepandemic\_mu03\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##             Effect DFn DFd          F        p p<.05      ges
+## 1             task   1 198   0.302000 5.83e-01       1.00e-03
+## 2            group   1 198   8.566000 4.00e-03     * 3.50e-02
+## 3            block   1 198 161.845000 1.73e-27     * 1.10e-01
+## 4       task:group   1 198   0.803000 3.71e-01       3.00e-03
+## 5       task:block   1 198   0.059000 8.08e-01       4.55e-05
+## 6      group:block   1 198   0.000826 9.77e-01       6.32e-07
+## 7 task:group:block   1 198   0.012000 9.14e-01       9.04e-06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: omega3}
+\NormalTok{dat\_prepandemic\_omega3\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_prepandemic\_df),}
+                                        \AttributeTok{task =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                        \AttributeTok{group =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                        dat\_prepandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"omega3\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_prepandemic\_omega3\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_omega3\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"omega3"}\NormalTok{, omega3\_1, omega3\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_prepandemic\_omega3 }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_prepandemic\_omega3\_df, }\AttributeTok{x =} \StringTok{"group"}\NormalTok{, }\AttributeTok{y =} \StringTok{"omega3"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_prepandemic\_omega3}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-14.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{prepandemic\_omega3\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_prepandemic\_omega3\_df, }\AttributeTok{dv =}\NormalTok{ omega3, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, group)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(prepandemic\_omega3\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##             Effect DFn DFd      F        p p<.05      ges
+## 1             task   1 198  0.343 5.59e-01       1.00e-03
+## 2            group   1 198  4.447 3.60e-02     * 1.40e-02
+## 3            block   1 198 38.893 2.66e-09     * 6.40e-02
+## 4       task:group   1 198  0.299 5.85e-01       9.83e-04
+## 5       task:block   1 198  0.003 9.59e-01       4.72e-06
+## 6      group:block   1 198  0.969 3.26e-01       2.00e-03
+## 7 task:group:block   1 198  0.899 3.44e-01       2.00e-03
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: mu02}
+\NormalTok{dat\_prepandemic\_mu02\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_prepandemic\_df),}
+                                      \AttributeTok{task =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                      \AttributeTok{group =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                      dat\_prepandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"mu02\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_prepandemic\_mu02\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_mu02\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"mu02"}\NormalTok{, mu02\_1, mu02\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_prepandemic\_mu02 }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_prepandemic\_mu02\_df, }\AttributeTok{x =} \StringTok{"group"}\NormalTok{, }\AttributeTok{y =} \StringTok{"mu02"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_prepandemic\_mu02}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-15.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{prepandemic\_mu02\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_prepandemic\_mu02\_df, }\AttributeTok{dv =}\NormalTok{ mu02, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, group)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(prepandemic\_mu02\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##             Effect DFn DFd          F        p p<.05      ges
+## 1             task   1 198  0.3460000 5.57e-01       1.00e-03
+## 2            group   1 198  0.4820000 4.88e-01       2.00e-03
+## 3            block   1 198 36.5830000 7.18e-09     * 4.20e-02
+## 4       task:group   1 198  0.1820000 6.70e-01       7.00e-04
+## 5       task:block   1 198  0.2250000 6.35e-01       2.71e-04
+## 6      group:block   1 198  0.5070000 4.77e-01       6.09e-04
+## 7 task:group:block   1 198  0.0000585 9.94e-01       7.04e-08
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: omega2}
+\NormalTok{dat\_prepandemic\_omega2\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_prepandemic\_df),}
+                                        \AttributeTok{task =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                        \AttributeTok{group =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                        dat\_prepandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"omega2\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_prepandemic\_omega2\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_omega2\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"omega2"}\NormalTok{, omega2\_1, omega2\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_prepandemic\_omega2 }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_prepandemic\_omega2\_df, }\AttributeTok{x =} \StringTok{"group"}\NormalTok{, }\AttributeTok{y =} \StringTok{"omega2"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_prepandemic\_omega2}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-16.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{prepandemic\_omega2\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_prepandemic\_omega2\_df, }\AttributeTok{dv =}\NormalTok{ omega2, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, group)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(prepandemic\_omega2\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##             Effect DFn DFd      F        p p<.05      ges
+## 1             task   1 198  0.019 0.891000       8.22e-05
+## 2            group   1 198 12.986 0.000397     * 5.30e-02
+## 3            block   1 198  0.176 0.675000       1.23e-04
+## 4       task:group   1 198  0.314 0.576000       1.00e-03
+## 5       task:block   1 198  0.424 0.516000       2.96e-04
+## 6      group:block   1 198  2.060 0.153000       1.00e-03
+## 7 task:group:block   1 198  1.082 0.300000       7.55e-04
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: kappa}
+\NormalTok{dat\_prepandemic\_kappa\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_prepandemic\_df),}
+                                       \AttributeTok{task =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                       \AttributeTok{group =}\NormalTok{ dat\_prepandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                       dat\_prepandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"kappa2\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_prepandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_prepandemic\_kappa\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_prepandemic\_kappa\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"kappa"}\NormalTok{, kappa2\_1, kappa2\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_prepandemic\_kappa }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_prepandemic\_kappa\_df, }\AttributeTok{x =} \StringTok{"group"}\NormalTok{, }\AttributeTok{y =} \StringTok{"kappa"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_prepandemic\_kappa}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-17.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{prepandemic\_kappa\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_prepandemic\_kappa\_df, }\AttributeTok{dv =}\NormalTok{ kappa, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, group)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(prepandemic\_kappa\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##             Effect DFn DFd         F        p p<.05      ges
+## 1             task   1 198  0.107000 7.44e-01       4.27e-04
+## 2            group   1 198 21.450000 6.57e-06     * 7.90e-02
+## 3            block   1 198 30.281000 1.15e-07     * 3.10e-02
+## 4       task:group   1 198  1.031000 3.11e-01       4.00e-03
+## 5       task:block   1 198  0.000216 9.88e-01       2.25e-07
+## 6      group:block   1 198  0.617000 4.33e-01       6.42e-04
+## 7 task:group:block   1 198  0.724000 3.96e-01       7.54e-04
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+
+\CommentTok{\# subset for pandemic data}
+\NormalTok{dat\_pandemic }\OtherTok{\textless{}{-}}\NormalTok{ dat }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{((dat}\SpecialCharTok{$}\NormalTok{dataset }\SpecialCharTok{==} \StringTok{"elife2020"} \SpecialCharTok{|}\NormalTok{ dat}\SpecialCharTok{$}\NormalTok{dataset }\SpecialCharTok{==} \StringTok{"pandemic"}\NormalTok{) }\SpecialCharTok{\&}\NormalTok{ (dat}\SpecialCharTok{$}\NormalTok{period }\SpecialCharTok{==} \StringTok{"prelockdown"} \SpecialCharTok{|}
+\NormalTok{                                                                            dat}\SpecialCharTok{$}\NormalTok{period }\SpecialCharTok{==} \StringTok{"lockdown"} \SpecialCharTok{|}
+\NormalTok{                                                                            dat}\SpecialCharTok{$}\NormalTok{period }\SpecialCharTok{==} \StringTok{"postlockdown"}\NormalTok{))}
+
+
+\CommentTok{\# calculate paranoia group {-} nonsocial/social}
+\CommentTok{\# extract scid from prelockdown, nonsocial group}
+\NormalTok{nonsocial\_pre\_group }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(dat\_pandemic[}\FunctionTok{which}\NormalTok{(dat\_pandemic}\SpecialCharTok{$}\NormalTok{dataset }\SpecialCharTok{==} \StringTok{"elife2020"}\NormalTok{),]}\SpecialCharTok{$}\NormalTok{scid\_group)}
+\FunctionTok{colnames}\NormalTok{(nonsocial\_pre\_group) }\OtherTok{\textless{}{-}} \StringTok{"group"}
+
+\NormalTok{pandemic\_dat }\OtherTok{\textless{}{-}}\NormalTok{ dat\_pandemic[}\SpecialCharTok{{-}}\FunctionTok{which}\NormalTok{(dat\_pandemic}\SpecialCharTok{$}\NormalTok{dataset }\SpecialCharTok{==} \StringTok{"elife2020"}\NormalTok{),]}
+\NormalTok{pandemic\_dat}\SpecialCharTok{$}\NormalTok{paranoia\_group }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{rowSums}\NormalTok{(pandemic\_dat[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"rgpts\_per"}\NormalTok{, }\FunctionTok{names}\NormalTok{(pandemic\_dat))], }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{, }\StringTok{"high"}\NormalTok{,}\StringTok{"low"}\NormalTok{)}
+
+\NormalTok{pandemic\_group }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(pandemic\_dat}\SpecialCharTok{$}\NormalTok{paranoia\_group)}
+\FunctionTok{colnames}\NormalTok{(pandemic\_group) }\OtherTok{\textless{}{-}} \StringTok{"group"}
+
+\NormalTok{dat\_pandemic}\SpecialCharTok{$}\NormalTok{paranoia\_group }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(nonsocial\_pre\_group, pandemic\_group)}
+
+
+
+\CommentTok{\# extract relevant features}
+\NormalTok{dat\_pandemic\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{period =}\NormalTok{ dat\_pandemic}\SpecialCharTok{$}\NormalTok{period,}
+                                 \AttributeTok{task =}\NormalTok{ dat\_pandemic}\SpecialCharTok{$}\NormalTok{task\_type,}
+                                 \AttributeTok{group =}\NormalTok{ dat\_pandemic}\SpecialCharTok{$}\NormalTok{paranoia\_group,}
+\NormalTok{                                 dat\_pandemic[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"wsr\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic))],}
+\NormalTok{                                 dat\_pandemic[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"lsr\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic))],}
+\NormalTok{                                 dat\_pandemic[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"mu03\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic))],}
+\NormalTok{                                 dat\_pandemic[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"omega3\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic))],}
+\NormalTok{                                 dat\_pandemic[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"mu02\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic))],}
+\NormalTok{                                 dat\_pandemic[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"omega2\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic))],}
+\NormalTok{                                 dat\_pandemic[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"kappa2\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic))])}
+
+
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: WSR}
+\NormalTok{dat\_pandemic\_wsr\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_pandemic\_df),}
+                                     \AttributeTok{period =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{period,}
+                                     \AttributeTok{task =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                     \AttributeTok{group =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                     dat\_pandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"wsr\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic\_df))]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_pandemic\_wsr\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_pandemic\_wsr\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"wsr"}\NormalTok{, wsr\_block1, wsr\_block2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_pandemic\_wsr }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_pandemic\_wsr\_df, }\AttributeTok{x =} \StringTok{"period"}\NormalTok{, }\AttributeTok{y =} \StringTok{"wsr"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_pandemic\_wsr}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-18.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{pandemic\_wsr\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_pandemic\_wsr\_df, }\AttributeTok{dv =}\NormalTok{ wsr, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, period)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(pandemic\_wsr\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##              Effect DFn DFd      F        p p<.05      ges
+## 1              task   1 599  0.820 3.66e-01       1.00e-03
+## 2            period   2 599  4.535 1.10e-02     * 1.30e-02
+## 3             block   1 599 32.214 2.15e-08     * 7.00e-03
+## 4       task:period   2 599  1.254 2.86e-01       4.00e-03
+## 5        task:block   1 599  0.198 6.57e-01       4.33e-05
+## 6      period:block   2 599  1.585 2.06e-01       6.94e-04
+## 7 task:period:block   2 599  0.215 8.07e-01       9.43e-05
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: LSR}
+\NormalTok{dat\_pandemic\_lsr\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_pandemic\_df),}
+                                  \AttributeTok{period =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{period,}
+                                  \AttributeTok{task =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                  \AttributeTok{group =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                  dat\_pandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"lsr\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic\_df))]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_pandemic\_lsr\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_pandemic\_lsr\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"lsr"}\NormalTok{, lsr\_block1, lsr\_block2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_pandemic\_lsr }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_pandemic\_lsr\_df, }\AttributeTok{x =} \StringTok{"period"}\NormalTok{, }\AttributeTok{y =} \StringTok{"lsr"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_pandemic\_lsr}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-19.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{pandemic\_lsr\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_pandemic\_lsr\_df, }\AttributeTok{dv =}\NormalTok{ lsr, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, period)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(pandemic\_lsr\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##              Effect DFn DFd     F     p p<.05      ges
+## 1              task   1 599 3.426 0.065       5.00e-03
+## 2            period   2 599 3.717 0.025     * 1.10e-02
+## 3             block   1 599 8.679 0.003     * 2.00e-03
+## 4       task:period   2 599 1.538 0.216       4.00e-03
+## 5        task:block   1 599 0.001 0.972       2.47e-07
+## 6      period:block   2 599 0.063 0.939       2.61e-05
+## 7 task:period:block   2 599 0.297 0.743       1.22e-04
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: mu03}
+\NormalTok{dat\_pandemic\_mu03\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_pandemic\_df),}
+                                  \AttributeTok{period =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{period,}
+                                  \AttributeTok{task =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                  \AttributeTok{group =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                  dat\_pandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"mu03\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_pandemic\_mu03\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_pandemic\_mu03\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"mu03"}\NormalTok{, mu03\_1, mu03\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_pandemic\_mu03 }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_pandemic\_mu03\_df, }\AttributeTok{x =} \StringTok{"period"}\NormalTok{, }\AttributeTok{y =} \StringTok{"mu03"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_pandemic\_mu03}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-20.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{pandemic\_mu03\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_pandemic\_mu03\_df, }\AttributeTok{dv =}\NormalTok{ mu03, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, period)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(pandemic\_mu03\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##              Effect DFn DFd       F         p p<.05      ges
+## 1              task   1 599   0.396  5.30e-01       0.000575
+## 2            period   2 599   1.351  2.60e-01       0.004000
+## 3             block   1 599 838.458 5.88e-116     * 0.153000
+## 4       task:period   2 599   0.502  6.05e-01       0.001000
+## 5        task:block   1 599   1.451  2.29e-01       0.000313
+## 6      period:block   2 599   0.273  7.61e-01       0.000118
+## 7 task:period:block   2 599   1.531  2.17e-01       0.000660
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: omega3}
+\NormalTok{dat\_pandemic\_omega3\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_pandemic\_df),}
+                                   \AttributeTok{period =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{period,}
+                                   \AttributeTok{task =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                   \AttributeTok{group =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                   dat\_pandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"omega3\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_pandemic\_omega3\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_pandemic\_omega3\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"omega3"}\NormalTok{, omega3\_1, omega3\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_pandemic\_omega3 }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_pandemic\_omega3\_df, }\AttributeTok{x =} \StringTok{"period"}\NormalTok{, }\AttributeTok{y =} \StringTok{"omega3"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_pandemic\_omega3}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-21.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{pandemic\_omega3\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_pandemic\_omega3\_df, }\AttributeTok{dv =}\NormalTok{ omega3, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, period)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(pandemic\_omega3\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##              Effect DFn DFd       F        p p<.05      ges
+## 1              task   1 599   1.073 3.01e-01       1.00e-03
+## 2            period   2 599   0.261 7.70e-01       5.45e-04
+## 3             block   1 599 141.325 2.08e-29     * 8.10e-02
+## 4       task:period   2 599   0.762 4.67e-01       2.00e-03
+## 5        task:block   1 599   0.020 8.86e-01       1.28e-05
+## 6      period:block   2 599   1.743 1.76e-01       2.00e-03
+## 7 task:period:block   2 599   0.732 4.82e-01       9.14e-04
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: mu02}
+\NormalTok{dat\_pandemic\_mu02\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_pandemic\_df),}
+                                   \AttributeTok{period =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{period,}
+                                   \AttributeTok{task =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                   \AttributeTok{group =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                   dat\_pandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"mu02\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_pandemic\_mu02\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_pandemic\_mu02\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"mu02"}\NormalTok{, mu02\_1, mu02\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_pandemic\_mu02 }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_pandemic\_mu02\_df, }\AttributeTok{x =} \StringTok{"period"}\NormalTok{, }\AttributeTok{y =} \StringTok{"mu02"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_pandemic\_mu02}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-22.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{pandemic\_mu02\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_pandemic\_mu02\_df, }\AttributeTok{dv =}\NormalTok{ mu02, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, period)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(pandemic\_mu02\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##              Effect DFn DFd       F        p p<.05      ges
+## 1              task   1 599   0.050 8.23e-01       6.33e-05
+## 2            period   2 599   1.204 3.01e-01       3.00e-03
+## 3             block   1 599 116.664 5.72e-25     * 4.50e-02
+## 4       task:period   2 599   0.396 6.74e-01       9.97e-04
+## 5        task:block   1 599   0.821 3.65e-01       3.35e-04
+## 6      period:block   2 599   0.689 5.03e-01       5.62e-04
+## 7 task:period:block   2 599   0.006 9.94e-01       5.22e-06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: omega2}
+\NormalTok{dat\_pandemic\_omega2\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_pandemic\_df),}
+                                     \AttributeTok{period =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{period,}
+                                     \AttributeTok{task =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                     \AttributeTok{group =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                     dat\_pandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"omega2\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_pandemic\_omega2\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_pandemic\_omega2\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"omega2"}\NormalTok{, omega2\_1, omega2\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_pandemic\_omega2 }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_pandemic\_omega2\_df, }\AttributeTok{x =} \StringTok{"period"}\NormalTok{, }\AttributeTok{y =} \StringTok{"omega2"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_pandemic\_omega2}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-23.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{pandemic\_omega2\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_pandemic\_omega2\_df, }\AttributeTok{dv =}\NormalTok{ omega2, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, period)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(pandemic\_omega2\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##              Effect DFn DFd     F     p p<.05      ges
+## 1              task   1 599 1.002 0.317       1.00e-03
+## 2            period   2 599 0.769 0.464       2.00e-03
+## 3             block   1 599 2.508 0.114       6.99e-04
+## 4       task:period   2 599 0.062 0.940       1.73e-04
+## 5        task:block   1 599 0.258 0.611       7.20e-05
+## 6      period:block   2 599 0.136 0.873       7.58e-05
+## 7 task:period:block   2 599 0.258 0.773       1.44e-04
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# three{-}way mixed ANOVA: kappa}
+\NormalTok{dat\_pandemic\_kappa\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(dat\_pandemic\_df),}
+                                     \AttributeTok{period =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{period,}
+                                     \AttributeTok{task =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{task,}
+                                     \AttributeTok{group =}\NormalTok{ dat\_pandemic\_df}\SpecialCharTok{$}\NormalTok{group,}
+\NormalTok{                                     dat\_pandemic\_df[, }\FunctionTok{grepl}\NormalTok{(}\StringTok{"kappa2\_"}\NormalTok{, }\FunctionTok{names}\NormalTok{(dat\_pandemic\_df))][}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{)}
+
+\CommentTok{\# gather block scores into long format}
+\NormalTok{dat\_pandemic\_kappa\_df }\OtherTok{\textless{}{-}}\NormalTok{ dat\_pandemic\_kappa\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"block"}\NormalTok{, }\AttributeTok{value =} \StringTok{"kappa"}\NormalTok{, kappa2\_1, kappa2\_2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{convert\_as\_factor}\NormalTok{(id, block)}
+
+\CommentTok{\# simple visualization}
+\NormalTok{bxp\_pandemic\_kappa }\OtherTok{\textless{}{-}} \FunctionTok{ggboxplot}\NormalTok{(}
+\NormalTok{  dat\_pandemic\_kappa\_df, }\AttributeTok{x =} \StringTok{"period"}\NormalTok{, }\AttributeTok{y =} \StringTok{"kappa"}\NormalTok{,}
+  \AttributeTok{color =} \StringTok{"block"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{,}
+  \AttributeTok{facet.by =} \StringTok{"task"}\NormalTok{, }\AttributeTok{short.panel.labs =} \ConstantTok{FALSE}
+\NormalTok{)}
+\NormalTok{bxp\_pandemic\_kappa}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{fig2_files/figure-latex/unnamed-chunk-1-24.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# anova}
+\NormalTok{pandemic\_kappa\_aov }\OtherTok{\textless{}{-}} \FunctionTok{anova\_test}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dat\_pandemic\_kappa\_df, }\AttributeTok{dv =}\NormalTok{ kappa, }\AttributeTok{wid =}\NormalTok{ id,}
+  \AttributeTok{within =}\NormalTok{ block, }\AttributeTok{between =} \FunctionTok{c}\NormalTok{(task, period)}
+\NormalTok{)}
+\FunctionTok{get\_anova\_table}\NormalTok{(pandemic\_kappa\_aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ANOVA Table (type III tests)
+## 
+##              Effect DFn DFd      F        p p<.05      ges
+## 1              task   1 599  2.245 1.35e-01       3.00e-03
+## 2            period   2 599  0.606 5.46e-01       2.00e-03
+## 3             block   1 599 92.453 1.89e-20     * 3.10e-02
+## 4       task:period   2 599  0.014 9.87e-01       3.58e-05
+## 5        task:block   1 599  1.818 1.78e-01       6.28e-04
+## 6      period:block   2 599  0.083 9.20e-01       5.75e-05
+## 7 task:period:block   2 599  0.008 9.92e-01       5.81e-06
+\end{verbatim}
+
+\end{document}

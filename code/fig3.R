@@ -10,12 +10,28 @@
 rm(list=ls())
 
 # set working directory
-setwd("C:/Pandemic_2020/revisions/data")
+#setwd("C:/Pandemic_2020/revisions/data")
+
+
+
+#install package ggpattern by:
+# install.packages('ggplot2')
+# install.packages('scales')
+# install.packages('grid')
+# install.packages('glue')
+# install.packages('rlang')
+# install.packages('sf')
+# install.packages('png')
+# 
+# # install.packages("remotes")
+#::install_github("trevorld/gridpattern")
+#remotes::install_github("coolbutuseless/ggpattern")                           # Load ggpattern package
 
 # load libraries
 library(dplyr)
 library(ggplot2)
 library(ggpubr)
+library(ggthemes)
 #library(devtools)
 #library(easyGgplot2)
 #library(openintro)
@@ -24,17 +40,19 @@ library(ggpubr)
 #library(tidyverse)
 library(rstatix)
 library(ggpattern)
-library(lsr)
 library(cowplot)
 library(readr)
-source("C:\\Pandemic_2020\\revisions\\code\\rainCloud\\RainCloudPlots-master\\tutorial_R\\R_rainclouds.R") # source: https://github.com/RainCloudPlots/RainCloudPlots/tree/master/tutorial_R
-source("C:\\Pandemic_2020\\revisions\\code\\rainCloud\\RainCloudPlots-master\\tutorial_R\\summarySE.R") # source: https://github.com/RainCloudPlots/RainCloudPlots/tree/master/tutorial_R
-source("C:\\Pandemic_2020\\revisions\\code\\rainCloud\\RainCloudPlots-master\\tutorial_R\\simulateData.R") # source: https://github.com/RainCloudPlots/RainCloudPlots/tree/master/tutorial_R
-source("C:/Pandemic_2020/revisions/code/theme_publication.R") # source: https://rpubs.com/Koundy/71792
+library(lsr)
+library(forcats)
+#source("D:\\GitHub\\covid19paranoia\\RainCloudPlots\\install.R")
+source("D:\\GitHub\\covid19paranoia\\RainCloudPlots\\tutorial_R\\R_rainclouds.R") # source: https://github.com/RainCloudPlots/RainCloudPlots/tree/master/tutorial_R
+source("D:\\GitHub\\covid19paranoia\\RainCloudPlots\\tutorial_R\\summarySE.R") # source: https://github.com/RainCloudPlots/RainCloudPlots/tree/master/tutorial_R
+source("D:\\GitHub\\covid19paranoia\\RainCloudPlots\\tutorial_R\\simulateData.R") # source: https://github.com/RainCloudPlots/RainCloudPlots/tree/master/tutorial_R
+source("D:\\GitHub\\covid19paranoia\\code\\theme_publication.R") # source: https://rpubs.com/Koundy/71792
 
 
 # read data
-dat <- read.csv('pandemicPRL.csv')
+dat <- read.csv('D:\\GitHub\\covid19paranoia\\data\\qualtricsPRL\\pandemicPRL.csv')
 
 # subset for pandemic data
 dat_pandemic <- dat[which(dat$dataset == "pandemic"),] 
@@ -86,28 +104,27 @@ sumrepdat <- summarySE(df_fig2a, measurevar = "score", groupvars=c("group", "per
 # Figure 2A
 fig_2a <- ggplot(df_fig2a, aes(x = period, 
                                   y = score)
-) +
-  geom_flat_violin(aes(fill = period),position = position_nudge(x = .2, y = 0), adjust = 1.5, trim = TRUE, alpha = .5, colour = NA)+
+) + geom_flat_violin(aes(fill = period),position = position_nudge(x = .2, y = 0), adjust = 1.5, trim = TRUE, alpha = .5, colour = NA)+
   geom_point(aes(x = as.numeric(period)-.275, y = score, colour = period),position = position_jitter(width = .05), size = 1.5, shape = 21)+
   geom_boxplot(aes(x = period, y = score, fill=period),
                width = .3,
                lwd = 1,
                colour = "black")+
-scale_colour_manual(values = c("#f2a097","#ed7669","#e84c3b"))+ 
-  scale_fill_manual(values = c("#f2a097","#ed7669","#e84c3b"))+ 
+scale_colour_manual(values = c("#f2a097","#ed7669","#e84c3b"))+
+  scale_fill_manual(values = c("#f2a097","#ed7669","#e84c3b"))+
   scale_x_discrete(labels=c("prelockdown" = "Pre-Lockdown", "lockdown" = "Lockdown",
                             "postlockdown" = "Post-Lockdown")) +
   labs(title="", x="Pandemic period", y="Paranoia")
- 
 
-fig_2a + theme_Publication() + theme(axis.title.y = element_blank(),
+
+fig_2a <- fig_2a + theme_Publication() + theme(axis.title.y = element_blank(),
                                      axis.title.x = element_blank(),
-                                     axis.text = element_blank(), 
+                                     axis.text = element_blank(),
                                      axis.line = element_line(colour="black", size = 1.5),
                                      axis.ticks = element_line(colour="black", size = 1.5),
-                                     legend.text = element_blank())  
+                                     legend.text = element_blank())
 
-
+fig_2a
 ####################################################################
 ####################### FIGURE 2B ##################################
 ####################################################################
@@ -211,7 +228,7 @@ fig2b_paranoia <- ggplot(df, aes(x = period,
                                                               )
 
 
-fig2b_paranoia + theme_Publication() +  theme(axis.title.y = element_blank(),
+fig2b_paranoia <- fig2b_paranoia + theme_Publication() +  theme(axis.title.y = element_blank(),
                                                        axis.title.x = element_blank(),
                                                        axis.text = element_blank(), 
                                                        axis.line = element_line(colour="black", size = 1.5),
@@ -270,7 +287,7 @@ fig2b_wsr <- ggplot(df, aes(x = period,
   )
 
 
-fig2b_wsr + theme_Publication() + theme(axis.title.y = element_blank(),
+fig2b_wsr <- fig2b_wsr + theme_Publication() + theme(axis.title.y = element_blank(),
                                         axis.title.x = element_blank(),
                                         axis.text = element_blank(), 
                                         axis.line = element_line(colour="black", size = 1.5),
